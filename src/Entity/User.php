@@ -316,7 +316,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param DateTime $loginCount
+     * @param integer $loginCount
      *
      * @return $this
      */

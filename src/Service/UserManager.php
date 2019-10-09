@@ -4,6 +4,8 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Cassandra\Date;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -78,7 +80,7 @@ class UserManager
     }
 
     /**
-     * @param UserInterface $user
+     * @param User $user
      */
     public function saveUser(UserInterface $user)
     {
