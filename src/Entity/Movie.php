@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Genre;
 
 /**
  * @ORM\Entity()
@@ -28,20 +30,20 @@ class Movie
     private $title;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $createdAt;
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Genre", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Genre", cascade={"persist"})
      * @ORM\JoinTable(name="movie_genre")
      */
     protected $genreCollection;
@@ -79,7 +81,7 @@ class Movie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCreatedAt()
     {
@@ -87,17 +89,17 @@ class Movie
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param DateTime $createdAt
      * @return $this
      */
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getUpdatedAt()
     {
@@ -105,10 +107,10 @@ class Movie
     }
 
     /**
-     * @param \DateTime $updatedAt
+     * @param DateTime $updatedAt
      * @return $this
      */
-    public function setUpdatedAt(\DateTime $updatedAt): self
+    public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
         return $this;

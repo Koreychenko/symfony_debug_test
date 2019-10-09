@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -92,27 +93,27 @@ class User implements UserInterface
 
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
-     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     * @ORM\Column(name="last_login", type="datetime", nullable=false, options={"default": "CURRENT_TIMESTAMP"})
      */
     private $lastLogin;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="login_count", type="integer")
+     * @ORM\Column(name="login_count", type="integer", nullable=true)
      */
     private $loginCount;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $createdAt;
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -121,7 +122,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="locale", type="string")
+     * @ORM\Column(name="locale", type="string", nullable=true)
      */
     private $locale;
 
@@ -136,7 +137,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->setRoles(['ROLE_USER']);
-        $this->createdAt  = new \DateTime();
+        $this->createdAt  = new DateTime();
         $this->loginCount = 0;
     }
 
@@ -307,7 +308,7 @@ class User implements UserInterface
 
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getLoginCount()
     {
@@ -315,7 +316,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param \DateTime $loginCount
+     * @param DateTime $loginCount
      *
      * @return $this
      */
@@ -327,7 +328,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getLastLogin()
     {
@@ -335,7 +336,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param \DateTime $lastLogin
+     * @param DateTime $lastLogin
      *
      * @return $this
      */

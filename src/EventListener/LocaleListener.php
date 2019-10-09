@@ -4,7 +4,8 @@ namespace App\EventListener;
 
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 
 class LocaleListener implements EventSubscriberInterface
@@ -21,11 +22,11 @@ class LocaleListener implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseEvent $event
+     * @param RequestEvent $requestEvent
      */
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $requestEvent)
     {
-        $request = $event->getRequest();
+        $request = $requestEvent->getRequest();
         if (!$request->hasPreviousSession()) {
             return;
         }

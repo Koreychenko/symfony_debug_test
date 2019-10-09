@@ -12,7 +12,7 @@ class MovieController extends AbstractController
 
     /**
      * @Route("/movies", name="app_movie_list")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index()
     {
