@@ -4,10 +4,10 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Cassandra\Date;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Exception;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -43,7 +43,7 @@ class UserManager
     {
         $this->userRepository = $ur;
         $this->encoderFactory = $ef;
-        $this->em             = $em;
+        $this->em = $em;
     }
 
 
@@ -71,6 +71,18 @@ class UserManager
 
     /**
      * @param UserInterface $user
+     * @throws Exception
+     */
+    public function updateLastLogin(UserInterface $user)
+    {
+        $user->setLastLogin(new DateTime());
+
+        // Increase login counts.
+        $user->setLoginCount($user->getLoginCount() + 1);
+    }
+
+    /**
+     * @param UserInterface $user
      *
      * @return mixed
      */
@@ -80,7 +92,7 @@ class UserManager
     }
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      */
     public function saveUser(UserInterface $user)
     {

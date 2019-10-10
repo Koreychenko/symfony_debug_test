@@ -137,7 +137,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->setRoles(['ROLE_USER']);
-        $this->createdAt  = new DateTime();
+        $this->createdAt = new DateTime();
         $this->loginCount = 0;
     }
 
@@ -308,7 +308,7 @@ class User implements UserInterface
 
 
     /**
-     * @return DateTime
+     * @return integer
      */
     public function getLoginCount()
     {

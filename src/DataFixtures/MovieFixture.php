@@ -26,7 +26,7 @@ class MovieFixture extends Fixture
     {
         $movies = [
             [
-                'title'  => 'Dark Phoenix',
+                'title' => 'Dark Phoenix',
                 'genres' => [
                     $this->getReference('GENRE_ACTION'),
                     $this->getReference('GENRE_ADVENTURE'),
@@ -34,7 +34,7 @@ class MovieFixture extends Fixture
                 ]
             ],
             [
-                'title'  => 'Aladdin (2019)',
+                'title' => 'Aladdin (2019)',
                 'genres' => [
                     $this->getReference('GENRE_ADVENTURE'),
                     $this->getReference('GENRE_COMEDY'),

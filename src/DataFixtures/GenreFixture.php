@@ -2,6 +2,7 @@
 /**
  * IGNORE FIXTURE FILES
  */
+
 namespace App\DataFixtures;
 
 use App\Entity\Genre;
