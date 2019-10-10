@@ -29,3 +29,43 @@ create a new repository with the current code base. commit your changes and send
 
 ## Further improvements
 - Filled by you
+
+1. In the IMDb titles are stored in the following format:
+titleId
+ordering
+title
+region
+language
+types
+attributes
+isOriginalTitle
+
+I recommend to change primary key of Movie table to "titleId" (see https://www.imdb.com/interfaces/). 
+This will allow us to insert with ON DUPLICATE KEY UPDATE and prevent MySQL autoincrement field overflow. 
+
+To import/update titles from IMDb best solution to create shell script, which does next operations:
+1. downloads title info from (https://datasets.imdbws.com/title.akas.tsv.gz)
+    ```
+        wget https://datasets.imdbws.com/title.akas.tsv.gz
+    ```
+2. extract data:
+    ```
+        gzip -d https://datasets.imdbws.com/title.akas.tsv.gz
+    ```
+3. import data from file into temporary table
+    ```
+        CREATE TEMPORARY TABLE temporary_table LIKE movie;
+        DROP INDEX `PRIMARY` ON temporary_table;
+   
+        LOAD DATA INFILE 'title.akas.tsv'
+        INTO TABLE temporary_table
+        FIELDS TERMINATED BY '\t' OPTIONALLY ENCLOSED BY '"'
+        (field1, field2);
+        
+        INSERT INTO movie
+        SELECT * FROM temporary_table
+        ON DUPLICATE KEY UPDATE field1 = VALUES(field1), field2 = VALUES(field2);
+   
+        DROP TEMPORARY TABLE temporary_table;
+    ```
+   
