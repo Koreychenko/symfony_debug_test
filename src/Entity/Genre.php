@@ -14,10 +14,9 @@ class Genre
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="genreCode", type="string", length=255)
      */
-    private $id;
+    private $genreCode;
 
     /**
      * @var string
@@ -45,9 +44,19 @@ class Genre
     /**
      * @return mixed
      */
-    public function getId()
+    public function getGenreCode()
     {
-        return $this->id;
+        return $this->genreCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setGenreCode(string $genreCode)
+    {
+        $this->genreCode = $genreCode;
+
+        return $this;
     }
 
     /**

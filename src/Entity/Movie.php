@@ -15,10 +15,9 @@ class Movie
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="titleId", type="string", length=255)
      */
-    private $id;
+    private $titleId;
 
     /**
      * @var string
@@ -27,6 +26,30 @@ class Movie
      * @Assert\NotBlank()
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $region;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $language;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="types", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $types;
 
     /**
      * @var DateTime
@@ -55,9 +78,19 @@ class Movie
     /**
      * @return mixed
      */
-    public function getId()
+    public function getTitleId()
     {
-        return $this->id;
+        return $this->titleId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setTitleId(string $titleId)
+    {
+        $this->titleId = $titleId;
+
+        return $this;
     }
 
     /**
@@ -75,6 +108,63 @@ class Movie
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param string $region
+     * @return $this
+     */
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param string $language
+     * @return $this
+     */
+    public function setLanguage(string $language): self
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * @param string $types
+     * @return $this
+     */
+    public function setTypes(string $types): self
+    {
+        $this->types = $types;
 
         return $this;
     }

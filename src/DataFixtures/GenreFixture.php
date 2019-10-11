@@ -44,8 +44,8 @@ class GenreFixture extends Fixture
 
             $genre = new Genre();
             $genre->setName($genreName);
+            $genre->setGenreCode(strtoupper(str_replace('-', '_', $genreName)));
 
-            $this->addReference('GENRE_' . strtoupper(str_replace('-', '_', $genreName)), $genre);
             $manager->persist($genre);
         }
 
